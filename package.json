@@ -1,0 +1,34 @@
+{
+  "name": "from-source",
+  "version": "0.1.0",
+  "description": "Generate a stream from a source",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Raynos/from-source.git",
+  "main": "index",
+  "homepage": "https://github.com/Raynos/from-source",
+  "contributors": [
+    {
+      "name": "Jake Verbaten"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Raynos/from-source/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "dependencies": {
+    "read-stream": "~0.4.2"
+  },
+  "devDependencies": {
+    "tap": "~0.3.1"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/from-source/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "tap --stderr --tap ./test"
+  }
+}
