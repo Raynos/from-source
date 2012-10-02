@@ -6,23 +6,31 @@ function fromSource(generator, options) {
     var queue = ReadStream()
         , stream = queue.stream
 
-    generator.call(queue, next)
+    if (options && options.once) {
+        generator.call(queue, end)
+    } else {
+        generator.call(queue, write, end)
+    }
 
     return stream
 
-    function next(err, item) {
+    function write(chunk) {
+        queue.push(chunk)
+
+        if (options && options.once) {
+            queue.end()
+        }
+    }
+
+    function end(err, chunk) {
         if (err) {
             return stream.emit("error", err)
         }
 
-        queue.push(item)
-
-        if (options && options.once) {
-            return queue.end()
+        if (chunk) {
+            queue.push(chunk)
         }
 
-        if (item !== null) {
-            generator.call(queue, next)
-        }
+        queue.end()
     }
 }
